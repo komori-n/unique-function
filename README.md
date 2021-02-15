@@ -1,5 +1,7 @@
 # unique-function
 
+![examples](https://github.com/komori-n/unique-function/workflows/examples/badge.svg)
+
 a simple move-only std::function replacement
 
 ## Getting Started
