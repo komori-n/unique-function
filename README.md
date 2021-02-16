@@ -70,9 +70,9 @@ int main(void) {
 
 Licensed under GNU General Public License, version 3.0
 
-## To-do
+## To do
 
 - [ ] small object optimization(SOO)
 - [ ] avoid using std::invoke(to work with c++-11)
 - [ ] qualifiers(const, noexcept)
-- [ ] more practical examples
+- [ ] comparison operator with `std::nullptr_t`
