@@ -19,6 +19,7 @@ It can be used to store function pointers, function objects and lambdas.
 
 ```cpp
 #include <iostream>
+#include <future>
 #include "komori/unique_function.hpp"
 
 int main(void) {
@@ -43,6 +44,7 @@ int main(void) {
 
 ```cpp
 #include <iostream>
+#include <future>
 #include "komori/onetime_function.hpp"
 
 int main(void) {
