@@ -8,7 +8,7 @@ namespace komori {
     template <typename F, typename Res, typename... ArgTypes>
     struct invoke_helper {
       static Res invoke(void* storage, ArgTypes&&... args) {
-        return 
+        return
           std::invoke(*static_cast<F*>(storage), std::forward<ArgTypes>(args)...);
       }
 
@@ -29,14 +29,15 @@ namespace komori {
 
     template <typename F>
     using helper = detail::invoke_helper<F, Res, ArgTypes...>;
+
   public:
     onetime_function(void) : storage_(nullptr), invoker_(nullptr), deleter_(nullptr) {}
 
     onetime_function(nullptr_t) : storage_(nullptr), invoker_(nullptr), deleter_(nullptr) {}
     template <typename F, typename DF=std::decay_t<F>>
-    onetime_function(F&& f) 
-    : storage_(new DF(std::forward<F>(f))), 
-      invoker_(&helper<DF>::invoke), 
+    onetime_function(F&& f)
+    : storage_(new DF(std::forward<F>(f))),
+      invoker_(&helper<DF>::invoke),
       deleter_(&helper<DF>::deleter) {}
 
     onetime_function(onetime_function&& f) noexcept
@@ -100,4 +101,24 @@ namespace komori {
     invoker_t invoker_;
     deleter_t deleter_;
   };
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator==(const onetime_function<Res(ArgTypes...)>& func, std::nullptr_t) {
+    return !func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator==(std::nullptr_t, const onetime_function<Res(ArgTypes...)>& func) {
+    return !func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator!=(const onetime_function<Res(ArgTypes...)>& func, std::nullptr_t) {
+    return func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator!=(std::nullptr_t, const onetime_function<Res(ArgTypes...)>& func) {
+    return func;
+  }
 }

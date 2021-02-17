@@ -8,7 +8,7 @@ namespace komori {
     template <typename F, typename Res, typename... ArgTypes>
     struct invoke_helper {
       static Res invoke(void* storage, ArgTypes&&... args) {
-        return 
+        return
           std::invoke(*static_cast<F*>(storage), std::forward<ArgTypes>(args)...);
       }
 
@@ -29,14 +29,15 @@ namespace komori {
 
     template <typename F>
     using helper = detail::invoke_helper<F, Res, ArgTypes...>;
+
   public:
     unique_function(void) : storage_(nullptr), invoker_(nullptr), deleter_(nullptr) {}
 
     unique_function(nullptr_t) : storage_(nullptr), invoker_(nullptr), deleter_(nullptr) {}
     template <typename F, typename DF=std::decay_t<F>>
-    unique_function(F&& f) 
-    : storage_(new DF(std::forward<F>(f))), 
-      invoker_(&helper<DF>::invoke), 
+    unique_function(F&& f)
+    : storage_(new DF(std::forward<F>(f))),
+      invoker_(&helper<DF>::invoke),
       deleter_(&helper<DF>::deleter) {}
 
     unique_function(unique_function&& f) noexcept
@@ -84,4 +85,23 @@ namespace komori {
     deleter_t deleter_;
   };
 
+  template <typename Res, typename... ArgTypes>
+  inline bool operator==(const unique_function<Res(ArgTypes...)>& func, std::nullptr_t) {
+    return !func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator==(std::nullptr_t, const unique_function<Res(ArgTypes...)>& func) {
+    return !func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator!=(const unique_function<Res(ArgTypes...)>& func, std::nullptr_t) {
+    return func;
+  }
+
+  template <typename Res, typename... ArgTypes>
+  inline bool operator!=(std::nullptr_t, const unique_function<Res(ArgTypes...)>& func) {
+    return func;
+  }
 };
