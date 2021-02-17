@@ -7,7 +7,7 @@ namespace komori {
   namespace detail {
     template <typename F, typename Res, typename... ArgTypes>
     struct invoke_helper {
-      static Res invoke(void* storage, ArgTypes&&... args) {
+      static Res invoker(void* storage, ArgTypes&&... args) {
         return
           std::invoke(*static_cast<F*>(storage), std::forward<ArgTypes>(args)...);
       }
@@ -37,7 +37,7 @@ namespace komori {
     template <typename F, typename DF=std::decay_t<F>>
     unique_function(F&& f)
     : storage_(new DF(std::forward<F>(f))),
-      invoker_(&helper<DF>::invoke),
+      invoker_(&helper<DF>::invoker),
       deleter_(&helper<DF>::deleter) {}
 
     unique_function(unique_function&& f) noexcept
