@@ -62,6 +62,8 @@ namespace komori {
       if (storage_) {
         deleter_(storage_);
         storage_ = nullptr;
+        invoker_ = nullptr;
+        deleter_ = nullptr;
       }
     }
 
