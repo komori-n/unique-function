@@ -26,7 +26,7 @@ int main(void) {
   std::promise<int> promise;
   auto future = promise.get_future();
 
-  // unique_function can store move-captured lambda.
+  // unique_function can store move-captured functors.
   komori::unique_function<void()> fn = [promise=std::move(promise)](void) mutable {
     promise.set_value(334);
   };
@@ -51,7 +51,7 @@ int main(void) {
   std::promise<int> promise;
   auto future = promise.get_future();
 
-  // onetime_function can store move-captured lambda.
+  // onetime_function can store move-captured functors.
   komori::onetime_function<void()> fn = [promise=std::move(promise)](void) mutable {
     promise.set_value(334);
   };
