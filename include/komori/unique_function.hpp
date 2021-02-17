@@ -51,7 +51,7 @@ namespace komori {
       return *this;
     }
     unique_function& operator=(unique_function&& f) {
-      f.swap(std::move(*this));
+      f.swap(*this);
       return *this;
     }
 
