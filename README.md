@@ -75,6 +75,5 @@ Licensed under GNU General Public License, version 3.0
 ## To do
 
 - [ ] small object optimization(SOO)
-- [ ] avoid using std::invoke(to work with c++-11)
 - [ ] qualifiers(const, noexcept)
 - [x] comparison operator with `std::nullptr_t`
