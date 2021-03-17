@@ -47,7 +47,7 @@ namespace komori {
       f.deleter_ = nullptr;
     }
     template <typename F>
-    unique_function& operator=(F&& f) {
+    unique_function& operator=(F&& f) noexcept {
       unique_function(std::forward<F>(f)).swap(*this);
       return *this;
     }
