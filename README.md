@@ -1,5 +1,6 @@
 # unique-function
 
+[![Test](https://github.com/komori-n/unique-function/actions/workflows/test.yml/badge.svg)](https://github.com/komori-n/unique-function/actions/workflows/test.yml)
 ![examples](https://github.com/komori-n/unique-function/workflows/examples/badge.svg)
 
 a simple move-only std::function replacement
