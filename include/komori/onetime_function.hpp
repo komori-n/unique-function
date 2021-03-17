@@ -121,4 +121,9 @@ namespace komori {
   inline bool operator!=(std::nullptr_t, const onetime_function<Res(ArgTypes...)>& func) {
     return func;
   }
+
+  template <typename T>
+  inline void swap(onetime_function<T>& lhs, onetime_function<T>& rhs) {
+    lhs.swap(rhs);
+  }
 }
