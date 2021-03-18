@@ -41,7 +41,7 @@ int main(void) {
 
 ### `komori::onetime_function`
 
-`komori::onetime_function` is a version of `komori::unique_function` that can only be called once.
+`komori::onetime_function` is a variation of `komori::unique_function` that can only be called once.
 
 ```cpp
 #include <iostream>
