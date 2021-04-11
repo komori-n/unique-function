@@ -73,8 +73,3 @@ int main(void) {
 
 Licensed under GNU General Public License, version 3.0
 
-## To do
-
-- [ ] small object optimization(SOO)
-- [ ] qualifiers(const, noexcept)
-- [x] comparison operator with `std::nullptr_t`
