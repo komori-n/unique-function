@@ -3,7 +3,7 @@
 [![Test](https://github.com/komori-n/unique-function/actions/workflows/test.yml/badge.svg)](https://github.com/komori-n/unique-function/actions/workflows/test.yml)
 ![examples](https://github.com/komori-n/unique-function/workflows/examples/badge.svg)
 
-a simple move-only std::function replacement
+A simple move-only std::function replacement
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ git clone https://github.com/komori-n/unique-function
 ### `komori::unique_function`
 
 `komori::unique_function` is move-only version of `std::function`.
-It can be used to store function pointers, function objects and lambdas.
+It can store function pointers, function objects, and lambdas.
 
 ```cpp
 #include <iostream>
